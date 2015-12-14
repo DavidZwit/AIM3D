@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using XboxCtrlrInput;
 
 public class PlayerMove : MonoBehaviour {
 
@@ -13,7 +14,6 @@ public class PlayerMove : MonoBehaviour {
     [SerializeField]
     float maxMoveSpeed;
     float moveSpeed = 0;
-    [SerializeField]
     int playerId;
 
     [SerializeField]
@@ -24,16 +24,15 @@ public class PlayerMove : MonoBehaviour {
     // Use this for initialization
     void Start () {
         moveSpeed = maxMoveSpeed;
-
+        playerId = int.Parse(gameObject.name);
         Rig = gameObject.GetComponent<Rigidbody>();
 	}
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-        moveDelta = new Vector3(Mathf.Round(Input.GetAxis("Horizontal" + playerId)), 0, Mathf.Round(Input.GetAxis("Vertical" + playerId)));
-        Debug.Log(boostDuration);
+        moveDelta = new Vector3(Mathf.Round(XCI.GetAxis(XboxAxis.LeftStickX, playerId)), 0, Mathf.Round(XCI.GetAxis(XboxAxis.LeftStickY, playerId)));
 
-        if (boostDuration > 0 && Input.GetButton("Boost 1"))
+        if (boostDuration > 0 && XCI.GetButton(XboxButton.A, playerId))
         {
             boostDuration -= Time.deltaTime;
             inputDelay = Time.time + maxInputDelay;
