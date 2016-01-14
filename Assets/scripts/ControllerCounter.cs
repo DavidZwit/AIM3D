@@ -17,7 +17,7 @@ public class ControllerCounter : MonoBehaviour {
         if (ControllerCount < jLength)
         {
             ControllerCount ++;
-            GameObject newPlayer = Instantiate(player, Vector3.zero, Quaternion.identity) as GameObject;
+            GameObject newPlayer = Instantiate(player, new Vector3(5, 1, 5), Quaternion.identity) as GameObject;
 
             if (!GameObject.Find("1")) newPlayer.name = "1";
             else if (!GameObject.Find("2")) newPlayer.name = "2";

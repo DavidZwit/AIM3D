@@ -41,7 +41,7 @@ public class PlayerMove : MonoBehaviour {
         else
         {
             if (inputDelay <= Time.time && boostDuration < maxBoostDuration)
-                boostDuration += 0.25f * Time.deltaTime;
+                    boostDuration += 0.25f * Time.deltaTime;
             moveSpeed = maxMoveSpeed;
         }
 
